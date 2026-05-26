@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mundo em Perspectiva — Site Crítico-Reflexivo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1a5c3a;
+    --verde-claro: #2e8b57;
+    --verde-suave: #e8f5ed;
+    --dourado: #c8973f;
+    --dourado-claro: #f5e6c8;
+    --creme: #faf8f3;
+    --cinza-quente: #4a4540;
+    --cinza-medio: #7a756e;
+    --cinza-claro: #eeebe4;
+    --branco: #ffffff;
+    --sombra: 0 2px 20px rgba(26,92,58,0.10);
+    --borda: 1px solid #d8d2c8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creme);
+    color: var(--cinza-quente);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--verde);
+    border-bottom: 3px solid var(--dourado);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--dourado-claro);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 0.2rem; flex-wrap: wrap; }
+  .nav-links a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--verde);
+    background-image: 
+      linear-gradient(135deg, rgba(15,61,38,0.92) 0%, rgba(26,92,58,0.88) 55%, rgba(37,90,60,0.92) 100%),
+      url('https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1600&q=80&fit=crop');
+    background-size: cover;
+    background-position: center;
+    padding: 7rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(200,151,63,0.04) 40px, rgba(200,151,63,0.04) 80px);
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--dourado); font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 700;
+    color: var(--branco);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .hero-frase {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.78);
+    font-style: italic;
+    max-width: 620px; margin: 0 auto 2.5rem;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,151,63,0.18);
+    border: 1px solid rgba(200,151,63,0.45);
+    color: var(--dourado);
+    font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 6px 18px;
+    border-radius: 100px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  section:nth-child(even) { background: var(--branco); }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--verde-claro); font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--verde);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-divider {
+    width: 56px; height: 3px;
+    background: var(--dourado);
+    margin-bottom: 2.5rem;
+  }
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--cinza-medio);
+    max-width: 680px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  /* ── QUEM SOMOS ── */
+  .quem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  @media (max-width: 720px) { .quem-grid { grid-template-columns: 1fr; } }
+
+  .quem-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--verde);
+    margin-bottom: 0.8rem;
+  }
+  .quem-text p { color: var(--cinza-quente); margin-bottom: 1rem; }
+
+  .membro-card {
+    background: var(--verde-suave);
+    border: var(--borda);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .membro-card strong { color: var(--verde); font-size: 1rem; }
+  .membro-card span { display: block; font-size: 0.85rem; color: var(--cinza-medio); }
+
+  .frase-destaque {
+    background: var(--verde);
+    color: #fff;
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .frase-destaque::before {
+    content: '"';
+    position: absolute; top: -0.5rem; left: 1.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem; color: rgba(200,151,63,0.18);
+    line-height: 1; pointer-events: none;
+  }
+  .frase-destaque blockquote {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.15rem; font-style: italic;
+    line-height: 1.7; color: rgba(255,255,255,0.9);
+    position: relative; z-index: 1;
+  }
+  .frase-destaque cite {
+    display: block; margin-top: 1rem;
+    font-size: 0.82rem; letter-spacing: 0.08em;
+    color: var(--dourado); font-style: normal;
+    text-transform: uppercase;
+  }
+
+  /* ── CONCEITOS ── */
+  .conceitos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .conceito-card {
+    background: var(--branco);
+    border: var(--borda);
+    border-radius: 14px;
+    padding: 1.75rem;
+    border-top: 4px solid var(--verde);
+    box-shadow: var(--sombra);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .conceito-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(26,92,58,0.15); }
+  .conceito-icone {
+    font-size: 1.8rem; margin-bottom: 0.8rem;
+    display: block;
+  }
+  .conceito-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: var(--verde);
+    font-weight: 700; margin-bottom: 0.6rem;
+  }
+  .conceito-def {
+    font-size: 0.92rem; color: var(--cinza-quente);
+    line-height: 1.75; margin-bottom: 1rem;
+  }
+  .conceito-reflexao {
+    background: var(--verde-suave);
+    border-left: 3px solid var(--verde-claro);
+    border-radius: 0 8px 8px 0;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: var(--cinza-medio);
+    font-style: italic;
+  }
+
+  /* ── SUGESTÕES ── */
+  .sugestoes-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .tab-btn {
+    background: none; border: var(--borda);
+    border-radius: 100px; padding: 7px 18px;
+    font-size: 0.85rem; cursor: pointer;
+    color: var(--cinza-medio); font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--verde); color: #fff; border-color: var(--verde);
+  }
+  .sugestoes-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .sugestao-item {
+    background: var(--creme);
+    border: var(--borda);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .sugestao-badge {
+    background: var(--verde);
+    color: #fff; border-radius: 8px;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .sugestao-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .sugestao-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26,92,58,0.15);
+    border-color: var(--verde-claro);
+  }
+  .sugestao-link:hover .sugestao-badge { background: var(--verde-claro) !important; }
+  .sugestao-link strong { color: var(--verde); }
+  .link-tag {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--verde-claro);
+    letter-spacing: 0.05em;
+  }
+  .sugestao-link:hover .link-tag { color: var(--dourado); }
+
+  /* ── ONGs ── */
+  .ongs-categorias { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .ong-categoria {
+    background: var(--branco);
+    border: var(--borda);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+  }
+  .ong-cat-header {
+    background: var(--verde);
+    padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .ong-cat-header span { font-size: 1.3rem; }
+  .ong-cat-header h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #fff; font-weight: 700; }
+  .ong-lista { padding: 1rem; }
+  .ong-item {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--cinza-claro);
+    display: flex; flex-direction: column; gap: 0.15rem;
+  }
+  .ong-item:last-child { border-bottom: none; }
+  .ong-item a {
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--verde-claro); text-decoration: none;
+  }
+  .ong-item a:hover { text-decoration: underline; }
+  .ong-item small { font-size: 0.76rem; color: var(--cinza-medio); }
+
+  /* ── EXPERIÊNCIAS EXITOSAS ── */
+  .experiencias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .exp-card {
+    background: var(--branco);
+    border: var(--borda);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    transition: transform 0.2s;
+  }
+  .exp-card:hover { transform: translateY(-4px); }
+  .exp-header {
+    background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+    padding: 1.25rem 1.5rem;
+  }
+  .exp-tag {
+    display: inline-block;
+    background: rgba(200,151,63,0.25);
+    color: var(--dourado-claro);
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 3px 10px;
+    border-radius: 100px; margin-bottom: 0.5rem;
+  }
+  .exp-header h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; line-height: 1.4; }
+  .exp-body { padding: 1.25rem 1.5rem; }
+  .exp-body p { font-size: 0.88rem; color: var(--cinza-quente); line-height: 1.7; }
+  .exp-meta { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+  .exp-meta span {
+    font-size: 0.76rem; color: var(--cinza-medio);
+    display: flex; align-items: center; gap: 0.3rem;
+  }
+
+  /* ── REFERÊNCIAS ── */
+  .refs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .ref-categoria { margin-bottom: 0; }
+  .ref-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--verde);
+    font-weight: 700; margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--dourado);
+  }
+  .ref-item {
+    background: var(--creme);
+    border: var(--borda);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .ref-item .ref-autor { font-size: 0.82rem; font-weight: 500; color: var(--cinza-medio); }
+  .ref-item .ref-obra { font-size: 0.88rem; color: var(--cinza-quente); font-style: italic; margin: 0.2rem 0; }
+  .ref-item .ref-dados { font-size: 0.78rem; color: var(--cinza-medio); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--verde);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--dourado-claro);
+    font-weight: 700; margin-bottom: 0.5rem;
+  }
+  footer p { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+  footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.2rem 0; flex-wrap: wrap; }
+  footer .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.7); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dourado); }
+
+  /* ── UTILIDADES ── */
+  .pill {
+    display: inline-block;
+    background: var(--verde-suave);
+    color: var(--verde);
+    font-size: 0.73rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px;
+    margin-right: 4px; margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGAÇÃO -->
+<nav>
+  <a href="#hero" class="nav-logo">Mundo em Perspectiva</a>
+  <div class="nav-links">
+    <a href="#quem-somos">Quem Somos</a>
+    <a href="#conceitos">Conceitos</a>
+    <a href="#sugestoes">Sugestões</a>
+    <a href="#ongs">ONGs</a>
+    <a href="#experiencias">Experiências</a>
+    <a href="#referencias">Referências</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero" class="hero">
+  <p class="hero-eyebrow">UNAERP · Engenharia de Produção · Estudos Contemporâneos · 2026</p>
+  <h1>Mundo em<br>Perspectiva</h1>
+  <p class="hero-frase">
+    "Nenhum homem é uma ilha. Cada ser humano é uma parte do continente, uma parte do todo."
+    <span style="display:block; margin-top:0.4rem; font-size:0.85rem; opacity:0.7;">— John Donne</span>
+  </p>
+  <span class="hero-badge">Globalização · Governança · Sustentabilidade</span>
+</div>
+
+
+<!-- ════ FOTO DESTAQUE ════ -->
+<div style="
+  width:100%;
+  height:420px;
+  background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80&fit=crop');
+  background-size: cover;
+  background-position: center 30%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+">
+  <div style="
+    position: absolute; inset:0;
+    background: linear-gradient(to right, rgba(26,92,58,0.82) 0%, rgba(0,0,0,0.45) 50%, rgba(200,151,63,0.55) 100%);
+  "></div>
+  <div style="position:relative; z-index:1; text-align:center; padding: 2rem;">
+    <p style="font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--dourado); margin-bottom:1rem;">Reflexão Crítica</p>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,3rem); color:#fff; font-weight:700; line-height:1.2; max-width:700px; margin:0 auto 1.2rem;">
+      O mundo é moldado por decisões políticas.<br>Entendê-las é um ato de resistência.
+    </h2>
+    <div style="width:56px; height:3px; background:var(--dourado); margin:0 auto;"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ QUEM SOMOS ════════════════════════════════════ -->
+<section id="quem-somos">
+  <div class="container">
+    <p class="section-label">Sobre o Grupo</p>
+    <h2 class="section-title">Quem Somos Nós</h2>
+    <div class="section-divider"></div>
+
+    <div class="quem-grid">
+      <div class="quem-text">
+        <h3>Nossa Trajetória</h3>
+        <p>
+          Somos um grupo de estudantes comprometidos com a reflexão crítica sobre os grandes desafios
+          do mundo contemporâneo. Ao longo das quatro unidades do curso, mergulhamos em debates sobre
+          globalização, corrupção, pobreza, sustentabilidade e o papel do Estado — e este site é a
+          síntese desse percurso coletivo.
+        </p>
+        <p>
+          Acreditamos que o conhecimento só ganha sentido quando está a serviço da transformação
+          social. Por isso, mais do que apresentar definições, buscamos estabelecer conexões entre
+          teoria e realidade, entre o global e o local, entre o passado e o futuro que queremos
+          construir.
+        </p>
+        <p>
+          <strong>Instituição:</strong> UNAERP — Universidade de Ribeirão Preto<br>
+          <strong>Curso:</strong> Engenharia de Produção<br>
+          <strong>Disciplina:</strong> Estudos Contemporâneos<br>
+          <strong>Ano:</strong> 2026
+        </p>
+
+        <div style="margin-top: 1.5rem;">
+          <div class="membro-card">
+            <strong>Thiago Bronzi</strong>
+            <span>RA: 841644 — Globalização e ONGs</span>
+          </div>
+          <div class="membro-card">
+            <strong>Gabriel Henrique</strong>
+            <span>RA: 841360 — Corrupção e Experiências Exitosas</span>
+          </div>
+          <div class="membro-card">
+            <strong>Eduardo Tiziotti</strong>
+            <span>RA: 841315 — Sustentabilidade e Referências</span>
+          </div>
+          <div class="membro-card">
+            <strong>João Pedro Alves</strong>
+            <span>RA: 841264 — Políticas Públicas e Sugestões</span>
+          </div>
+          <div class="membro-card">
+            <strong>Guilherme Montanheiro</strong>
+            <span>RA: 841991 — Nova Ordem Mundial e Conceitos</span>
+          </div>
+          <div class="membro-card">
+            <strong>Kauan Gessi Balbino</strong>
+            <span>RA: 841920 — Estado, Governo e Pobreza</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="frase-destaque">
+          <blockquote>
+            "A educação é a arma mais poderosa que você pode usar para mudar o mundo. Mas a mudança
+            só acontece quando o saber se converte em ação coletiva comprometida com a justiça."
+          </blockquote>
+          <cite>— Frase que define este site</cite>
+        </div>
+
+        <div style="margin-top: 1.5rem; background: var(--dourado-claro); border: 1px solid var(--dourado); border-radius: 12px; padding: 1.5rem;">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cinza-quente); margin-bottom: 0.75rem;">Nossa Metodologia</h3>
+          <p style="font-size: 0.88rem; color: var(--cinza-quente); line-height: 1.7;">
+            Este site foi construído de forma colaborativa, com pesquisa em fontes acadêmicas,
+            documentos internacionais, relatórios de organismos multilaterais e análise crítica
+            das realidades brasileira e global. Cada seção reflete o esforço coletivo de compreender
+            o mundo em sua complexidade.
+          </p>
+          <div style="margin-top: 1rem;">
+            <span class="pill">Pesquisa Colaborativa</span>
+            <span class="pill">Análise Crítica</span>
+            <span class="pill">Fontes Primárias</span>
+            <span class="pill">Perspectiva Global</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ CONCEITOS ════════════════════════════════════ -->
+<section id="conceitos">
+  <div class="container">
+    <p class="section-label">Arcabouço Teórico</p>
+    <h2 class="section-title">Definição de Conceitos</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      Compreender os grandes problemas contemporâneos exige dominar os conceitos que os estruturam.
+      Abaixo, definimos os principais termos trabalhados ao longo das quatro unidades, com reflexões
+      críticas sobre sua aplicação na realidade brasileira e global.
+    </p>
+
+    <div class="conceitos-grid">
+
+      <!-- Globalização -->
+      <div class="conceito-card">
+        <span class="conceito-icone">🌐</span>
+        <div class="conceito-titulo">Globalização</div>
+        <p class="conceito-def">
+          Processo multidimensional de intensificação das interconexões econômicas, políticas,
+          culturais e tecnológicas entre países e povos, que rompe fronteiras territoriais e redefine
+          relações de poder. Iniciado com as grandes navegações, aprofundou-se após a Segunda Guerra
+          Mundial e acelerou-se com a revolução digital a partir dos anos 1990.
+        </p>
+        <div class="conceito-reflexao">
+          <strong>Reflexão crítica:</strong> A globalização distribui seus benefícios de forma
+          desigual — enquanto amplia oportunidades para países centrais, pode aprofundar
+          vulnerabilidades em economias periféricas como o Brasil.
+        </div>
+      </div>
+
+      <!-- Nova Ordem Mundial -->
+      <div class="conceito-card">
+        <span class="conceito-icone">🏛️</span>
+        <div class="conceito-titulo">Nova Ordem Mundial</div>
+        <p class="conceito-def">
+          Configuração geopolítica surgida com o fim da Guerra Fria (1991) e marcada pela hegemonia
+          norte-americana, pela emergência de novos atores (China, BRICS), pela multipolaridade
+          crescente e pela influência de organismos internacionais como ONU, FMI e OMC na
+          governança global.
+        </p>
+        <div class="conceito-reflexao">
+          <strong>Reflexão crítica:</strong> A nova ordem reposicionou o Sul Global, mas as
+          estruturas de poder permanecem assimétricas — o que exige vigilância sobre quem define
+          as "regras do jogo" internacional.
+        </div>
+      </div>
+
+      <!-- Corrupção -->
+      <div class="conceito-card">
+        <span class="conceito-icone">⚖️</span>
+        <div class="conceito-titulo">Corrupção</div>
+        <p class="conceito-def">
+          Abuso de posição de confiança — pública ou privada — para obtenção de vantagens indevidas,
+          em detrimento do interesse coletivo. Manifesta-se em formas como suborno, desvio de
+          verbas, nepotismo, lavagem de dinheiro e captura do Estado por interesses privados.
+        </p>
+        <div class="conceito-reflexao">
+          <strong>Reflexão crítica:</strong> No Brasil, a corrupção sistêmica compromete cerca de
+          2% a 4% do PIB anualmente (FGV), agravando desigualdades e erodindo a confiança
+          institucional — um obstáculo estrutural ao desenvolvimento.
+        </div>
+      </div>
+
+      <!-- Políticas Públicas -->
+      <div class="conceito-card">
+        <span class="conceito-icone">📋</span>
+        <div class="conceito-titulo">Políticas Públicas</div>
+        <p class="conceito-def">
+          Conjunto de decisões e ações do Estado voltadas à solução de problemas coletivos e ao
+          atendimento das necessidades da sociedade. Envolvem diagnóstico, formulação, implementação,
+          monitoramento e avaliação — e podem ser de natureza social, econômica, ambiental,
+          educacional, entre outras.
+        </p>
+        <div class="conceito-reflexao">
+          <strong>Reflexão crítica:</strong> Políticas públicas eficazes dependem de participação
+          social, transparência, financiamento adequado e insulamento contra interferências
+          político-clientelistas.
+        </div>
+      </div>
+
+      <!-- Estado/Governo -->
+      <div class="conceito-card">
+        <span class="conceito-icone">🏗️</span>
+        <div class="conceito-titulo">Estado e Governo</div>
+        <p class="conceito-def">
+          <strong>Estado</strong> é a organização política permanente de uma nação, composta por
+          território, povo e soberania. <strong>Governo</strong> é o conjunto de pessoas e
+          instituições que, temporariamente, exercem o poder do Estado, definindo e implementando
+          políticas segundo determinado projeto político.
+        </p>
+        <div class="conceito-reflexao">
+          <strong>Reflexão crítica:</strong> Distinguir Estado de governo é essencial para a
+          democracia — políticas de Estado devem transcender ciclos eleitorais e resistir a
+          interesses partidários de curto prazo.
+        </div>
+      </div>
+
+      <!-- Pobreza -->
+      <div class="conceito-card">
+        <span class="conceito-icone">📊</span>
+        <div class="conceito-titulo">Pobreza</div>
+        <p class="conceito-def">
+          Condição de privação material e imaterial que impede indivíduos e comunidades de satisfazer
+          necessidades básicas. O Banco Mundial define pobreza extrema como renda inferior a US$ 2,15
+          por dia (PPC). O conceito multidimensional (PNUD/IPM) incorpora acesso à saúde, educação
+          e qualidade de vida.
+        </p>
+        <div class="conceito-reflexao">
+          <strong>Reflexão crítica:</strong> A pobreza não é fatalidade — é resultado de escolhas
+          políticas, estruturas econômicas e relações de poder. No Brasil, ela tem cor, gênero e
+          endereço, revelando a persistência de desigualdades históricas.
+        </div>
+      </div>
+
+      <!-- Dimensões da Sustentabilidade -->
+      <div class="conceito-card" style="border-top-color: var(--dourado);">
+        <span class="conceito-icone">🌱</span>
+        <div class="conceito-titulo">Dimensões da Sustentabilidade</div>
+        <p class="conceito-def">
+          O conceito de sustentabilidade, consolidado no Relatório Brundtland (1987), abrange
+          ao menos quatro dimensões: <strong>Ambiental</strong> (uso racional dos recursos naturais),
+          <strong>Social</strong> (equidade e inclusão), <strong>Econômica</strong> (geração de
+          riqueza sem destruição) e <strong>Institucional/Política</strong> (governança transparente
+          e participação cidadã).
+        </p>
+        <div class="conceito-reflexao">
+          <strong>Reflexão crítica:</strong> Sustentabilidade não é pauta ambiental isolada — é
+          projeto civilizatório que exige repensar o modelo de produção, consumo e distribuição
+          de poder em escala planetária.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ SUGESTÕES ════════════════════════════════════ -->
+<section id="sugestoes">
+  <div class="container">
+    <p class="section-label">Cultura e Conhecimento</p>
+    <h2 class="section-title">Músicas, Vídeos e Palestras</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      A reflexão crítica não nasce apenas em sala de aula. Arte, documentários e palestras são
+      ferramentas poderosas de conscientização. Confira nossas sugestões:
+    </p>
+
+    <!-- MÚSICAS -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--verde); margin-bottom:1.2rem; font-size:1.2rem;">🎵 Músicas</h3>
+    <div class="sugestoes-lista" style="margin-bottom:2.5rem;">
+
+      <a href="https://www.youtube.com/watch?v=qmxNAGiD4-k" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge">♪</div>
+        <div class="sugestao-info">
+          <strong>"Que País É Este" — Legião Urbana (1987)</strong>
+          <span>Crítica à corrupção, impunidade e pobreza no Brasil pós-ditadura. Letra atemporal.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=wBfVsucRe1w" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge">♪</div>
+        <div class="sugestao-info">
+          <strong>"Construção" — Chico Buarque (1971)</strong>
+          <span>Narrativa poética sobre a vida do trabalhador, desigualdade e invisibilidade social.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=aXJ_Ub1xbhw" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge">♪</div>
+        <div class="sugestao-info">
+          <strong>"Admirável Chip Novo" — Pitty (2003)</strong>
+          <span>Questiona a homogeneização cultural e o controle do consumismo globalizado.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=VYOjWnS4cMY" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge">♪</div>
+        <div class="sugestao-info">
+          <strong>"This Is America" — Childish Gambino (2018)</strong>
+          <span>Crítica à violência racial, consumismo e distração midiática nos EUA.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=TlKoKiZxx7I" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge">♪</div>
+        <div class="sugestao-info">
+          <strong>"Parabolicamará" — Gilberto Gil (1992)</strong>
+          <span>Reflexão sobre globalização, tecnologia e identidade cultural brasileira.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=XAi3VTSdTxU" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge">♪</div>
+        <div class="sugestao-info">
+          <strong>"Earth Song" — Michael Jackson (1995)</strong>
+          <span>Apelo à destruição ambiental, guerras e responsabilidade coletiva global.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- VÍDEOS / DOCUMENTÁRIOS -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--verde); margin-bottom:1.2rem; font-size:1.2rem;">🎬 Documentários e Vídeos</h3>
+    <div class="sugestoes-lista" style="margin-bottom:2.5rem;">
+
+      <a href="https://www.youtube.com/watch?v=EewGMBOB4Gg" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:var(--dourado);">▶</div>
+        <div class="sugestao-info">
+          <strong>"Zeitgeist" — Peter Joseph (2007)</strong>
+          <span>Análise crítica do sistema econômico, político e das estruturas de poder global.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=Bu6SE5TYrCM" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:var(--dourado);">▶</div>
+        <div class="sugestao-info">
+          <strong>"Uma Verdade Inconveniente" — Al Gore (2006)</strong>
+          <span>Premiado documentário sobre a crise climática e a inércia política global.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=xJPCKjT0XXk" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:var(--dourado);">▶</div>
+        <div class="sugestao-info">
+          <strong>"Privatizações: A Distopia do Capital" — Silvio Tendler (2014)</strong>
+          <span>Debate sobre privatizações, papel do Estado e o desmonte do patrimônio público brasileiro.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=5549dHHr_0w" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:var(--dourado);">▶</div>
+        <div class="sugestao-info">
+          <strong>"Eu, Daniel Blake" — Ken Loach (2016)</strong>
+          <span>Palma de Ouro em Cannes. Retrata a burocracia estatal, pobreza e a luta por direitos sociais na Inglaterra. Completo e dublado.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=PGgVZAZJKwY" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:var(--dourado);">▶</div>
+        <div class="sugestao-info">
+          <strong>"Desigualdade Global: Brasil" — TV Folha (2019)</strong>
+          <span>Documentário da Folha de S.Paulo sobre concentração de renda, pobreza e contrastes sociais no Brasil. Gratuito e completo.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- PALESTRAS -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--verde); margin-bottom:1.2rem; font-size:1.2rem;">🎤 Palestras Online (TED e outros)</h3>
+    <div class="sugestoes-lista">
+
+      <a href="https://www.youtube.com/watch?v=hVimVzgtD6w" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:#e63946;">T</div>
+        <div class="sugestao-info">
+          <strong>Hans Rosling — "The Best Stats You've Ever Seen" (TED, 2006)</strong>
+          <span>Dados sobre pobreza e desenvolvimento que desafiam preconceitos.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=D9Ihs241zeg" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:#e63946;">T</div>
+        <div class="sugestao-info">
+          <strong>Chimamanda Adichie — "The Danger of a Single Story" (TED, 2009)</strong>
+          <span>Reflexão sobre narrativas, globalização e como contamos histórias sobre o outro.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=ydKcaIE6O1k" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:#e63946;">T</div>
+        <div class="sugestao-info">
+          <strong>Rutger Bregman — "Poverty Isn't a Lack of Character" (TED, 2017)</strong>
+          <span>Pobreza é falta de dinheiro — não de valores morais ou esforço.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=EAmmUIEsN9A" target="_blank" class="sugestao-item sugestao-link">
+        <div class="sugestao-badge" style="background:#e63946;">T</div>
+        <div class="sugestao-info">
+          <strong>Greta Thunberg — "School Strike for Climate" (TEDx Stockholm, 2018)</strong>
+          <span>O discurso que mobilizou uma geração em torno da emergência climática global.</span>
+          <span class="link-tag">▶ Assistir no YouTube</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ ONGs ════════════════════════════════════ -->
+<section id="ongs">
+  <div class="container">
+    <p class="section-label">Sociedade Civil Global</p>
+    <h2 class="section-title">Principais ONGs e Organismos</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      Organizações da sociedade civil desempenham papel essencial no combate à corrupção,
+      promoção da transparência, estudo da pobreza e proteção ambiental. Conheça as mais
+      reconhecidas nacional e internacionalmente.
+    </p>
+
+    <div class="ongs-categorias">
+
+      <div class="ong-categoria">
+        <div class="ong-cat-header">
+          <span>⚖️</span>
+          <h3>Combate à Corrupção</h3>
+        </div>
+        <div class="ong-lista">
+          <div class="ong-item">
+            <a href="https://www.transparency.org" target="_blank">Transparência Internacional</a>
+            <small>Referência global — publica o Índice de Percepção da Corrupção (IPC)</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://transparenciainternacional.org.br" target="_blank">Transparência Internacional Brasil</a>
+            <small>Capítulo brasileiro da TI — pesquisa e advocacy anticorrupção</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.u4.no" target="_blank">U4 Anti-Corruption Resource Centre</a>
+            <small>Centro internacional de pesquisa aplicada sobre corrupção</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.globalwitness.org" target="_blank">Global Witness</a>
+            <small>Investiga crimes financeiros, corrupção ambiental e abuso de poder</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.unodc.org" target="_blank">UNODC</a>
+            <small>Escritório da ONU sobre Drogas e Crimes — inclui combate à corrupção</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="ong-categoria">
+        <div class="ong-cat-header">
+          <span>🔍</span>
+          <h3>Transparência Pública</h3>
+        </div>
+        <div class="ong-lista">
+          <div class="ong-item">
+            <a href="https://www.opengovpartnership.org" target="_blank">Open Government Partnership</a>
+            <small>Parceria multilateral por governos mais transparentes e responsivos</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.articlexix.org" target="_blank">Article 19</a>
+            <small>Defende liberdade de expressão e acesso à informação pública</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://ethos.org.br" target="_blank">Instituto Ethos</a>
+            <small>Promove responsabilidade social empresarial e ética nos negócios no Brasil</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.portaldatransparencia.gov.br" target="_blank">Portal da Transparência (Gov. BR)</a>
+            <small>Portal oficial com dados sobre gastos públicos federais</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.conectas.org" target="_blank">Conectas Direitos Humanos</a>
+            <small>Monitoramento de políticas públicas e direitos humanos no Brasil</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="ong-categoria">
+        <div class="ong-cat-header">
+          <span>📊</span>
+          <h3>Estudos sobre Pobreza</h3>
+        </div>
+        <div class="ong-lista">
+          <div class="ong-item">
+            <a href="https://www.worldbank.org" target="_blank">Banco Mundial</a>
+            <small>Principal produtor de dados e pesquisas globais sobre pobreza e desenvolvimento</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.undp.org" target="_blank">PNUD — Programa das Nações Unidas</a>
+            <small>Publica o Índice de Desenvolvimento Humano (IDH) anualmente</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.oxfam.org" target="_blank">Oxfam International</a>
+            <small>Combate a desigualdade e a pobreza com atuação em mais de 90 países</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.iets.org.br" target="_blank">IETS — Instituto de Estudos do Trabalho e Sociedade</a>
+            <small>Pesquisas sobre desigualdade, trabalho e pobreza no Brasil</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.iser.org.br" target="_blank">ISER — Instituto de Estudos da Religião</a>
+            <small>Pesquisa sobre violência, pobreza e cidadania no contexto urbano</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="ong-categoria">
+        <div class="ong-cat-header">
+          <span>🌱</span>
+          <h3>Proteção Ambiental</h3>
+        </div>
+        <div class="ong-lista">
+          <div class="ong-item">
+            <a href="https://www.greenpeace.org" target="_blank">Greenpeace International</a>
+            <small>Ações diretas e campanhas de pressão pela proteção ambiental global</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.wwf.org.br" target="_blank">WWF Brasil</a>
+            <small>Conservação da biodiversidade com foco especial na Amazônia e Cerrado</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.imazon.org.br" target="_blank">Imazon</a>
+            <small>Instituto especializado em pesquisa sobre o desmatamento na Amazônia</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.sosma.org.br" target="_blank">SOS Mata Atlântica</a>
+            <small>Proteção e recuperação da Mata Atlântica no Brasil</small>
+          </div>
+          <div class="ong-item">
+            <a href="https://www.350.org" target="_blank">350.org</a>
+            <small>Movimento global pela transição energética e combate à crise climática</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ EXPERIÊNCIAS EXITOSAS ════════════════════════════════════ -->
+<section id="experiencias">
+  <div class="container">
+    <p class="section-label">Casos de Sucesso</p>
+    <h2 class="section-title">Experiências Exitosas</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      Existem exemplos concretos de que é possível combater a corrupção, reduzir a pobreza e
+      promover a sustentabilidade. Estas experiências demonstram que políticas públicas eficazes
+      e engajamento social podem transformar realidades.
+    </p>
+
+    <div class="experiencias-grid">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-tag">Combate à Pobreza</span>
+          <h3>Bolsa Família / CadÚnico — Brasil</h3>
+        </div>
+        <div class="exp-body">
+          <p>Um dos maiores programas de transferência de renda do mundo. Entre 2003 e 2014, contribuiu
+          para redução de 28 milhões de pessoas em situação de extrema pobreza. Referência internacional
+          estudada pelo Banco Mundial e replicada em mais de 50 países.</p>
+          <div class="exp-meta">
+            <span>🌎 Brasil</span>
+            <span>📅 2003–presente</span>
+            <span>🏅 ODS 1 e 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-tag">Transparência Pública</span>
+          <h3>Lei de Acesso à Informação — Brasil (2011)</h3>
+        </div>
+        <div class="exp-body">
+          <p>A LAI (Lei 12.527/2011) garantiu ao cidadão o direito de acesso a informações públicas.
+          Desde sua implementação, mais de 2 milhões de pedidos foram atendidos, fortalecendo o
+          controle social e a accountability governamental.</p>
+          <div class="exp-meta">
+            <span>🌎 Brasil</span>
+            <span>📅 2012–presente</span>
+            <span>🏅 Transparência</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-tag">Sustentabilidade</span>
+          <h3>Transição Energética — Dinamarca</h3>
+        </div>
+        <div class="exp-body">
+          <p>A Dinamarca produz mais de 55% de sua eletricidade a partir de energias renováveis
+          (predominantemente eólica). Um modelo de planejamento de longo prazo, combinando
+          investimento público, regulação e inovação privada para a descarbonização.</p>
+          <div class="exp-meta">
+            <span>🌎 Dinamarca</span>
+            <span>📅 1970–presente</span>
+            <span>🏅 ODS 7 e 13</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-tag">Combate à Corrupção</span>
+          <h3>Reformas de Transparência — Georgia (2004–2012)</h3>
+        </div>
+        <div class="exp-body">
+          <p>Após a Revolução das Rosas, a Geórgia implementou reformas radicais: digitalização de
+          serviços públicos, dissolução da polícia corrupta e criação de serviços públicos de
+          excelência. O país caiu 85 posições no ranking de corrupção em menos de uma década.</p>
+          <div class="exp-meta">
+            <span>🌎 Geórgia</span>
+            <span>📅 2004–2012</span>
+            <span>🏅 Governança</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-tag">Proteção Ambiental</span>
+          <h3>Restauração Florestal — Costa Rica</h3>
+        </div>
+        <div class="exp-body">
+          <p>A Costa Rica reverteu o desmatamento: de 21% de cobertura florestal nos anos 1980
+          para mais de 54% atualmente, através de pagamento por serviços ambientais, proibição
+          do desmatamento e diversificação econômica baseada no ecoturismo.</p>
+          <div class="exp-meta">
+            <span>🌎 Costa Rica</span>
+            <span>📅 1996–presente</span>
+            <span>🏅 ODS 15</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-tag">Governança e Inclusão</span>
+          <h3>Orçamento Participativo — Porto Alegre</h3>
+        </div>
+        <div class="exp-body">
+          <p>Pioneiro mundial em democracia participativa (1989), o Orçamento Participativo de
+          Porto Alegre permitiu que cidadãos decidissem diretamente sobre prioridades de
+          investimento público. Tornou-se referência global, replicado em mais de 1.500 cidades.</p>
+          <div class="exp-meta">
+            <span>🌎 Porto Alegre, BR</span>
+            <span>📅 1989–presente</span>
+            <span>🏅 Democracia</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ REFERÊNCIAS ════════════════════════════════════ -->
+<section id="referencias">
+  <div class="container">
+    <p class="section-label">Arcabouço Bibliográfico</p>
+    <h2 class="section-title">Referências e Indicações Bibliográficas</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      A consistência teórica deste trabalho apoia-se em obras clássicas e contemporâneas,
+      documentos internacionais e artigos científicos. Abaixo, as principais referências
+      organizadas por temática.
+    </p>
+
+    <div class="refs-grid">
+
+      <div class="ref-categoria">
+        <div class="ref-titulo">🌐 Globalização e Nova Ordem Mundial</div>
+
+        <div class="ref-item">
+          <div class="ref-autor">BAUMAN, Zygmunt</div>
+          <div class="ref-obra">Globalização: As Consequências Humanas</div>
+          <div class="ref-dados">Rio de Janeiro: Zahar, 1999.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">GIDDENS, Anthony</div>
+          <div class="ref-obra">As Consequências da Modernidade</div>
+          <div class="ref-dados">São Paulo: UNESP, 1991.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">IANNI, Octavio</div>
+          <div class="ref-obra">A Era do Globalismo</div>
+          <div class="ref-dados">Rio de Janeiro: Civilização Brasileira, 1996.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">STIGLITZ, Joseph E.</div>
+          <div class="ref-obra">A Globalização e seus Malefícios</div>
+          <div class="ref-dados">São Paulo: Futura, 2002.</div>
+        </div>
+      </div>
+
+      <div class="ref-categoria">
+        <div class="ref-titulo">⚖️ Corrupção e Estado</div>
+
+        <div class="ref-item">
+          <div class="ref-autor">AVRITZER, Leonardo; FILGUEIRAS, Fernando (Orgs.)</div>
+          <div class="ref-obra">Corrupção e Sistema Político no Brasil</div>
+          <div class="ref-dados">Rio de Janeiro: Civilização Brasileira, 2011.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">MOISÉS, José Álvaro</div>
+          <div class="ref-obra">Democracia e Confiança: Por que os Cidadãos Desconfiam das Instituições?</div>
+          <div class="ref-dados">São Paulo: EDUSP, 2010.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">TRANSPARENCY INTERNATIONAL</div>
+          <div class="ref-obra">Corruption Perceptions Index (CPI) — Relatório Anual</div>
+          <div class="ref-dados">Berlim: TI, 2024. Disponível em: transparency.org</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">WEBER, Max</div>
+          <div class="ref-obra">Economia e Sociedade — Vol. 1: Fundamentos da Sociologia Compreensiva</div>
+          <div class="ref-dados">Brasília: UnB, 2009.</div>
+        </div>
+      </div>
+
+      <div class="ref-categoria">
+        <div class="ref-titulo">📋 Políticas Públicas</div>
+
+        <div class="ref-item">
+          <div class="ref-autor">SOUZA, Celina</div>
+          <div class="ref-obra">Políticas Públicas: Uma Revisão da Literatura</div>
+          <div class="ref-dados">Sociologias, Porto Alegre, n. 16, p. 20–45, 2006.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">RUA, Maria das Graças</div>
+          <div class="ref-obra">Políticas Públicas</div>
+          <div class="ref-dados">Florianópolis: UFSC/CAPES, 2009.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">HOWLETT, Michael; RAMESH, M.; PERL, Anthony</div>
+          <div class="ref-obra">Política Pública: Seus Ciclos e Subsistemas</div>
+          <div class="ref-dados">Rio de Janeiro: Elsevier, 2013.</div>
+        </div>
+      </div>
+
+      <div class="ref-categoria">
+        <div class="ref-titulo">📊 Pobreza e Desigualdade</div>
+
+        <div class="ref-item">
+          <div class="ref-autor">SEN, Amartya</div>
+          <div class="ref-obra">Desenvolvimento como Liberdade</div>
+          <div class="ref-dados">São Paulo: Companhia das Letras, 2000.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">PIKETTY, Thomas</div>
+          <div class="ref-obra">O Capital no Século XXI</div>
+          <div class="ref-dados">Rio de Janeiro: Intrínseca, 2014.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">PNUD</div>
+          <div class="ref-obra">Relatório de Desenvolvimento Humano — Edição 2024</div>
+          <div class="ref-dados">Nova York: PNUD, 2024. Disponível em: hdr.undp.org</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">OXFAM BRASIL</div>
+          <div class="ref-obra">A Distância que nos Une: Um Retrato das Desigualdades Brasileiras</div>
+          <div class="ref-dados">São Paulo: Oxfam Brasil, 2017.</div>
+        </div>
+      </div>
+
+      <div class="ref-categoria">
+        <div class="ref-titulo">🌱 Sustentabilidade e Meio Ambiente</div>
+
+        <div class="ref-item">
+          <div class="ref-autor">COMISSÃO BRUNDTLAND (ONU)</div>
+          <div class="ref-obra">Nosso Futuro Comum</div>
+          <div class="ref-dados">Rio de Janeiro: FGV, 1991. [1ª ed. 1987]</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">SACHS, Ignacy</div>
+          <div class="ref-obra">Caminhos para o Desenvolvimento Sustentável</div>
+          <div class="ref-dados">Rio de Janeiro: Garamond, 2002.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">IPCC</div>
+          <div class="ref-obra">Sixth Assessment Report — AR6 (Síntese)</div>
+          <div class="ref-dados">Genebra: IPCC, 2023. Disponível em: ipcc.ch</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">LEFF, Enrique</div>
+          <div class="ref-obra">Saber Ambiental: Sustentabilidade, Racionalidade, Complexidade, Poder</div>
+          <div class="ref-dados">Petrópolis: Vozes, 2001.</div>
+        </div>
+      </div>
+
+      <div class="ref-categoria">
+        <div class="ref-titulo">📚 Documentos Internacionais e Outros</div>
+
+        <div class="ref-item">
+          <div class="ref-autor">ONU</div>
+          <div class="ref-obra">Agenda 2030 — Objetivos de Desenvolvimento Sustentável (ODS)</div>
+          <div class="ref-dados">Nova York: ONU, 2015. Disponível em: brasil.un.org/pt-br/sdgs</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">ONU</div>
+          <div class="ref-obra">Convenção das Nações Unidas contra a Corrupção (UNCAC)</div>
+          <div class="ref-dados">Nova York: ONU, 2003. unodc.org</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">HARARI, Yuval Noah</div>
+          <div class="ref-obra">21 Lições para o Século 21</div>
+          <div class="ref-dados">São Paulo: Companhia das Letras, 2018.</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-autor">MAZZUCATO, Mariana</div>
+          <div class="ref-obra">O Estado Empreendedor: Desmascarando o Mito do Setor Público vs. Privado</div>
+          <div class="ref-dados">Porto Alegre: Portfolio-Penguin, 2014.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Mundo em Perspectiva</div>
+  <p style="color:rgba(255,255,255,0.55); font-size:0.85rem; max-width:520px; margin:0.5rem auto 0;">
+    Site crítico-reflexivo desenvolvido colaborativamente como trabalho acadêmico interdisciplinar.
+  </p>
+  <div class="footer-links">
+    <a href="#quem-somos">Quem Somos</a>
+    <a href="#conceitos">Conceitos</a>
+    <a href="#sugestoes">Sugestões</a>
+    <a href="#ongs">ONGs</a>
+    <a href="#experiencias">Experiências</a>
+    <a href="#referencias">Referências</a>
+  </div>
+  <p style="font-size:0.75rem; color:rgba(255,255,255,0.35);">
+    UNAERP — Universidade de Ribeirão Preto · Engenharia de Produção · Estudos Contemporâneos · 2026
+  </p>
+</footer>
+
+</body>
+</html>
