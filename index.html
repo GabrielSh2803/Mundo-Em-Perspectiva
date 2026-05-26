@@ -32,15 +32,16 @@
     font-size: 16px;
     line-height: 1.75;
   }
-
-  /* ── NAV ── */
+/* ── NAV ── */
   nav {
     position: sticky; top: 0; z-index: 100;
     background: var(--verde);
     border-bottom: 3px solid var(--dourado);
-    padding: 0 2rem;
+    padding: 1rem 2rem; /* Trocamos a altura fixa por espaçamento flexível */
     display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
+    min-height: 64px; /* Permite que a barra cresça se necessário */
+    flex-wrap: wrap;
+    gap: 1rem;
   }
   .nav-logo {
     font-family: 'Playfair Display', serif;
@@ -49,7 +50,11 @@
     letter-spacing: 0.03em;
     text-decoration: none;
   }
-  .nav-links { display: flex; gap: 0.2rem; flex-wrap: wrap; }
+  .nav-links { 
+    display: flex; 
+    gap: 0.2rem; 
+    flex-wrap: wrap; 
+  }
   .nav-links a {
     color: rgba(255,255,255,0.82);
     text-decoration: none;
@@ -62,6 +67,21 @@
     transition: background 0.2s, color 0.2s;
   }
   .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  /* ── AJUSTE EXTRA PARA CELULAR ── */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column; /* Coloca a logo em cima e os links embaixo */
+      justify-content: center;
+      padding: 1rem;
+    }
+    .nav-links {
+      justify-content: center; /* Centraliza os links no celular */
+    }
+    section { 
+      padding: 3rem 1.5rem; /* Reduz um pouco o respiro gigante das seções no celular */
+    }
+  }
 
   /* ── HERO ── */
   .hero {
